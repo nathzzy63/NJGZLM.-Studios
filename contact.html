@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | NJGZLM. Studios</title>
+
+    <meta name="description"
+        content="Contact NJGZLM. Studios for affordable website development, apps, robotics, and technology support.">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/contact.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        NJGZLM<span>.</span> Studios
+    </a>
+
+    <nav id="navMenu">
+
+        <a href="index.html">Home</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="projects.html">Projects</a>
+
+        <a href="about.html">About</a>
+
+        <a href="contact.html" class="nav-button">
+            Get Started
+        </a>
+
+    </nav>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        type="button">
+
+        ☰
+
+    </button>
+
+</header>
+
+
+<main>
+
+    <section class="contact-hero">
+        <p class="eyebrow">LET'S WORK TOGETHER</p>
+
+        <h1>
+            Let's build something<br>
+            <span>amazing.</span>
+        </h1>
+
+        <p>
+            Have a project in mind? Tell us what you need.
+            We'll help you find an affordable technology solution.
+        </p>
+    </section>
+
+    <section class="contact-layout">
+
+        <!-- Contact Information -->
+
+        <div class="contact-information">
+
+            <p class="eyebrow">GET IN TOUCH</p>
+
+            <h2>We'd love to hear from you.</h2>
+
+            <p class="information-description">
+                Whether you need a website, application,
+                robotics project, or technical assistance,
+                NJGZLM. Studios is ready to help.
+            </p>
+
+            <div class="information-card">
+                <span>📧</span>
+                <div>
+                    <h3>Email</h3>
+                    <p>nathannorielarrubio@email.com</p>
+                </div>
+            </div>
+
+            <div class="information-card">
+                <span>💻</span>
+                <div>
+                    <h3>Our Services</h3>
+                    <p>Apps, Websites, Robotics & Tech Support</p>
+                </div>
+            </div>
+
+            <div class="information-card">
+                <span>📍</span>
+                <div>
+                    <h3>Service Area</h3>
+                    <p>Philippines / Online Services</p>
+                </div>
+            </div>
+
+            <div class="availability">
+                <span class="status-dot"></span>
+                Available for project inquiries
+            </div>
+
+        </div>
+
+        <!-- Project Inquiry Form -->
+
+        <div class="contact-form-container">
+
+            <p class="eyebrow">PROJECT INQUIRY</p>
+
+            <h2>Tell us about your project</h2>
+
+            <form id="contactForm">
+
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        maxlength="100"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        maxlength="254"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service Needed *</label>
+
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="Website Development">
+                            Website Development
+                        </option>
+                        <option value="App Development">
+                            App Development
+                        </option>
+                        <option value="Robotics Solutions">
+                            Robotics Solutions
+                        </option>
+                        <option value="Technology Support">
+                            Technology Support
+                        </option>
+                        <option value="Other">
+                            Other / Custom Project
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Estimated Budget</label>
+
+                    <select id="budget" name="budget">
+                        <option value="">Select your budget</option>
+                        <option value="Below ₱500">
+                            Below ₱500
+                        </option>
+                        <option value="₱500 - ₱1,500">
+                            ₱500 - ₱1,500
+                        </option>
+                        <option value="₱1,500 - ₱3,000">
+                            ₱1,500 - ₱3,000
+                        </option>
+                        <option value="₱3,000 - ₱5,000">
+                            ₱3,000 - ₱5,000
+                        </option>
+                        <option value="Above ₱5,000">
+                            Above ₱5,000
+                        </option>
+                        <option value="Not yet decided">
+                            Not yet decided
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">
+                        Project Description *
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        maxlength="3000"
+                        placeholder="Describe your project, requirements, and ideas..."
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="button primary submit-btn">
+                    Submit Inquiry →
+                </button>
+
+                <p class="form-note">
+                    Your email application will open with your
+                    inquiry prepared for sending.
+                </p>
+
+                <p id="formMessage" role="status"
+                    aria-live="polite"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="index.html" class="logo">
+                NJGZLM<span>. Studios</span>
+            </a>
+
+            <p>
+                Building innovative digital experiences
+                through websites, applications, and robotics.
+                Technology made accessible to everyone.
+            </p>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div>
+            <h3>Quick Links</h3>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div>
+            <h3>Our Services</h3>
+            <div class="footer-links">
+                <a href="services.html">Website Development</a>
+                <a href="services.html">App Development</a>
+                <a href="services.html">Robotics</a>
+                <a href="services.html">Custom Solutions</a>
+            </div>
+        </div>
+
+        <!-- SOCIALS -->
+        <div>
+            <h3>Connect With Us</h3>
+            <div class="footer-socials">
+                <!-- Replace # with your real profile URLs -->
+                <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+        <p>
+            © <span id="currentYear"></span>
+            NJGZLM. Studios. All rights reserved.
+        </p>
+
+        <p>Designed with innovation.</p>
+    </div>
+</footer>
+
+</body>
+</html>
