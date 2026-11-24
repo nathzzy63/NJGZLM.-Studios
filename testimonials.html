@@ -90,29 +90,75 @@
 
     </section>
 
-    <!-- Feedback Call to Action -->
-    <section class="feedback-section">
 
-        <div class="feedback-content">
-            <span>SHARE YOUR EXPERIENCE</span>
+<!-- Feedback Section -->
+<section class="feedback-section" id="feedback">
 
-            <h2>
-                Have We Worked Together?
-            </h2>
+    <div class="feedback-content">
 
-            <p>
-                We'd love to hear about your experience.
-                Your feedback helps us improve and serve
-                our clients better.
-            </p>
+        <span>SHARE YOUR EXPERIENCE</span>
 
-            <a href="index.html#contact" class="primary-btn">
-                Share Your Feedback
+        <h2>Have We Worked Together?</h2>
+
+        <p>
+            We'd love to hear about your experience.
+            Your feedback helps us improve and serve
+            our clients better.
+        </p>
+
+        <form id="testimonialForm" class="testimonial-form">
+
+            <input
+                type="text"
+                id="testimonialName"
+                placeholder="Your Full Name"
+                maxlength="60"
+                required
+            >
+
+            <input
+                type="text"
+                id="testimonialProject"
+                placeholder="Project or Service (Optional)"
+                maxlength="100"
+            >
+
+            <label>How would you rate our service?</label>
+
+            <div class="rating-container">
+
+                <span class="rating-star" data-rating="1">★</span>
+                <span class="rating-star" data-rating="2">★</span>
+                <span class="rating-star" data-rating="3">★</span>
+                <span class="rating-star" data-rating="4">★</span>
+                <span class="rating-star" data-rating="5">★</span>
+
+            </div>
+
+            <input
+                type="hidden"
+                id="testimonialRating"
+                value=""
+            >
+
+            <textarea
+                id="testimonialMessage"
+                placeholder="Share your experience with NJGZLM. Studios..."
+                maxlength="1000"
+                required
+            ></textarea>
+
+            <button type="submit" class="primary-btn">
+                Submit Testimonial
                 <i class="fas fa-paper-plane"></i>
-            </a>
-        </div>
+            </button>
 
-    </section>
+        </form>
+
+    </div>
+
+</section>
+
 
     <!-- Footer -->
     <footer>
