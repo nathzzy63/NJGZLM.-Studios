@@ -1,33 +1,43 @@
-declare const Deno: {
-  env: {
-    get(name: string): string | undefined;
-  };
-  serve(handler: (request: Request) => Response | Promise<Response>): void;
-};
 
-// @ts-ignore Deno resolves npm: specifiers at runtime.
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 // ==========================================
-// NSPPLM. STUDIOS - INQUIRY BACKEND
+// NJGZLM STUDIOS - INQUIRY BACKEND
 // ==========================================
 
 // Allowed website origins
 const allowedOrigins = (
   Deno.env.get("ALLOWED_ORIGINS") ??
-  "http://localhost:5500,http://127.0.0.1:5500"
+  "http://localhost:5500,http://127.0.0.1:5500,https://njgzlmstudios-git-main-crshs.vercel.app"
 )
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/$/, ""))
   .filter(Boolean);
 
-// CORS headers
+// Allowed services
+const allowedServices = [
+  "Website Development",
+  "App Development",
+  "Robotics Solutions",
+  "Technology Support",
+  "Other",
+];
+
+// ==========================================
+// CORS
+// ==========================================
+
 function getCorsHeaders(origin: string | null) {
+  const normalizedOrigin = origin?.replace(/\/$/, "") ?? "";
+
   const allowed =
-    origin !== null && allowedOrigins.includes(origin);
+    origin !== null &&
+    allowedOrigins.includes(normalizedOrigin);
 
   return {
-    "Access-Control-Allow-Origin": allowed ? origin : "null",
+    "Access-Control-Allow-Origin": allowed
+      ? normalizedOrigin
+      : "null",
     "Access-Control-Allow-Headers":
       "authorization, x-client-info, apikey, content-type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -35,7 +45,10 @@ function getCorsHeaders(origin: string | null) {
   };
 }
 
-// JSON response helper
+// ==========================================
+// JSON RESPONSE
+// ==========================================
+
 function sendResponse(
   data: Record<string, unknown>,
   status: number,
@@ -50,7 +63,10 @@ function sendResponse(
   });
 }
 
-// Escape HTML to prevent HTML injection in emails
+// ==========================================
+// SECURITY HELPERS
+// ==========================================
+
 function escapeHTML(value: string): string {
   return value.replace(/[&<>"']/g, (char) => {
     const entities: Record<string, string> = {
@@ -65,6 +81,10 @@ function escapeHTML(value: string): string {
   });
 }
 
+function cleanString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
 // ==========================================
 // MAIN FUNCTION
 // ==========================================
@@ -72,81 +92,133 @@ function escapeHTML(value: string): string {
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get("origin");
 
-  // Handle browser preflight requests
+  // Handle CORS preflight
   if (req.method === "OPTIONS") {
+    if (origin && !allowedOrigins.includes(origin.replace(/\/$/, ""))) {
+      return sendResponse(
+        { success: false, error: "Origin not allowed." },
+        403,
+        origin,
+      );
+    }
+
     return new Response(null, {
       status: 204,
       headers: getCorsHeaders(origin),
     });
   }
 
-  // Reject unauthorized website origins
-  if (origin && !allowedOrigins.includes(origin)) {
-    return sendResponse(
-      { error: "Origin not allowed." },
-      403,
-      origin,
-    );
-  }
-
-  // Accept POST requests only
+  // Only POST requests allowed
   if (req.method !== "POST") {
     return sendResponse(
-      { error: "Method not allowed." },
+      { success: false, error: "Method not allowed." },
       405,
       origin,
     );
   }
 
-  try {
-    // Read request body
-    const body = await req.json();
+  // Verify website origin
+  if (origin && !allowedOrigins.includes(origin.replace(/\/$/, ""))) {
+    return sendResponse(
+      { success: false, error: "Origin not allowed." },
+      403,
+      origin,
+    );
+  }
 
-    if (!body || typeof body !== "object" || Array.isArray(body)) {
+  try {
+    // ==========================================
+    // READ REQUEST BODY
+    // ==========================================
+
+    let body: unknown;
+
+    try {
+      body = await req.json();
+    } catch {
       return sendResponse(
-        { error: "Invalid request body." },
+        { success: false, error: "Invalid JSON request." },
         400,
         origin,
       );
     }
 
-    // Honeypot spam protection
-    if (body.website) {
-      return sendResponse({ success: true }, 200, origin);
+    if (
+      !body ||
+      typeof body !== "object" ||
+      Array.isArray(body)
+    ) {
+      return sendResponse(
+        { success: false, error: "Invalid request body." },
+        400,
+        origin,
+      );
     }
 
-    // Extract and sanitize input
-    const full_name = String(body.full_name ?? "").trim();
-    const email = String(body.email ?? "").trim().toLowerCase();
-    const service = String(body.service ?? "").trim();
-    const budget = String(body.budget ?? "").trim();
-    const message = String(body.message ?? "").trim();
+    const data = body as Record<string, unknown>;
 
-    // Allowed services
-const allowedServices = [
-  "Website Development",
-  "App Development",
-  "Robotics Solutions",
-  "Technology Support",
-  "Other",
-];
-    // Validate input
+    // ==========================================
+    // HONEYPOT SPAM PROTECTION
+    // ==========================================
+
+    if (data.website) {
+      return sendResponse(
+        {
+          success: true,
+          message: "Your inquiry was submitted successfully.",
+        },
+        200,
+        origin,
+      );
+    }
+
+    // ==========================================
+    // EXTRACT FORM DATA
+    // ==========================================
+
+    const full_name = cleanString(data.full_name);
+    const email = cleanString(data.email).toLowerCase();
+    const service = cleanString(data.service);
+    const budget = cleanString(data.budget);
+    const message = cleanString(data.message);
+
+    // ==========================================
+    // VALIDATE INPUT
+    // ==========================================
+
+    const errors: string[] = [];
+
     const validEmail =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    if (
-      full_name.length < 2 ||
-      full_name.length > 100 ||
-      !validEmail ||
-      email.length > 254 ||
-      !allowedServices.includes(service) ||
-      budget.length > 100 ||
-      message.length < 10 ||
-      message.length > 3000
-    ) {
+    if (full_name.length < 2 || full_name.length > 100) {
+      errors.push("Name must contain 2-100 characters.");
+    }
+
+    if (!validEmail || email.length > 254) {
+      errors.push("Please enter a valid email address.");
+    }
+
+    if (!allowedServices.includes(service)) {
+      errors.push("Please select a valid service.");
+    }
+
+    if (budget.length > 100) {
+      errors.push("Budget must not exceed 100 characters.");
+    }
+
+    if (message.length < 10 || message.length > 3000) {
+      errors.push("Description must contain 10-3000 characters.");
+    }
+
+    if (errors.length > 0) {
+      console.error("Inquiry validation failed:", errors);
+
       return sendResponse(
         {
-          error: "Please provide valid inquiry information.",
+          success: false,
+          error: errors.join(" "),
+          validationErrors: errors,
         },
         400,
         origin,
@@ -172,17 +244,20 @@ const allowedServices = [
     const inquiryTo = Deno.env.get("INQUIRY_TO_EMAIL");
 
     if (!supabaseUrl || !supabaseSecret) {
-      console.error("Supabase configuration is missing.");
+      console.error("Supabase backend configuration is missing.");
 
       return sendResponse(
-        { error: "Backend database configuration is incomplete." },
+        {
+          success: false,
+          error: "Backend database configuration is incomplete.",
+        },
         500,
         origin,
       );
     }
 
     // ==========================================
-    // SUPABASE CLIENT
+    // INITIALIZE SUPABASE
     // ==========================================
 
     const supabase = createClient(
@@ -197,7 +272,7 @@ const allowedServices = [
     );
 
     // ==========================================
-    // SAVE INQUIRY
+    // SAVE INQUIRY TO DATABASE
     // ==========================================
 
     const { data: inquiry, error: dbError } = await supabase
@@ -218,6 +293,7 @@ const allowedServices = [
 
       return sendResponse(
         {
+          success: false,
           error: "Unable to save your inquiry. Please try again later.",
         },
         500,
@@ -229,17 +305,14 @@ const allowedServices = [
     // RESEND EMAIL NOTIFICATION
     // ==========================================
 
-    // Database insertion succeeds even if email
-    // notification is not configured or unavailable.
-
     if (!resendKey || !emailFrom || !inquiryTo) {
-      console.warn("Email notification is not configured.");
+      console.warn("Email notification configuration is incomplete.");
 
       return sendResponse(
         {
           success: true,
           notificationSent: false,
-          message: "Inquiry saved successfully. Email notification is not configured.",
+          message: "Your inquiry was saved successfully!",
           inquiryId: inquiry.id,
         },
         200,
@@ -268,8 +341,8 @@ const allowedServices = [
             reply_to: email,
             subject: `New Project Inquiry - ${full_name}`,
             html: `
-              <div style="font-family: Arial, sans-serif;">
-                <h2>New NSPPLM. Studios Inquiry</h2>
+              <div style="font-family:Arial,sans-serif;color:#222;line-height:1.6;">
+                <h2>New NJGZLM Studios Inquiry</h2>
 
                 <p><strong>Inquiry ID:</strong> ${inquiry.id}</p>
                 <p><strong>Name:</strong> ${safeName}</p>
@@ -281,7 +354,7 @@ const allowedServices = [
                 <p>${safeMessage}</p>
 
                 <hr>
-                <p>NSPPLM. Studios Inquiry System</p>
+                <p>NJGZLM Studios Inquiry System</p>
               </div>
             `,
           }),
@@ -291,13 +364,13 @@ const allowedServices = [
       if (!emailResult.ok) {
         const errorText = await emailResult.text();
 
-        console.error("Resend error:", errorText);
+        console.error("Resend notification failed:", errorText);
 
         return sendResponse(
           {
             success: true,
             notificationSent: false,
-            message: "Inquiry saved, but email notification could not be sent.",
+            message: "Your inquiry was saved, but email notification could not be sent.",
             inquiryId: inquiry.id,
           },
           200,
@@ -306,13 +379,13 @@ const allowedServices = [
       }
 
     } catch (emailError) {
-      console.error("Email delivery failed:", emailError);
+      console.error("Email delivery error:", emailError);
 
       return sendResponse(
         {
           success: true,
           notificationSent: false,
-          message: "Inquiry saved, but email notification could not be sent.",
+          message: "Your inquiry was saved, but email notification could not be sent.",
           inquiryId: inquiry.id,
         },
         200,
@@ -321,7 +394,7 @@ const allowedServices = [
     }
 
     // ==========================================
-    // SUCCESS RESPONSE
+    // SUCCESS
     // ==========================================
 
     return sendResponse(
@@ -340,6 +413,7 @@ const allowedServices = [
 
     return sendResponse(
       {
+        success: false,
         error: "Something went wrong. Please try again later.",
       },
       500,
