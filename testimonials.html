@@ -7,19 +7,15 @@
 
     <title>Testimonials | NJGZLM. Studios</title>
 
-    <link rel="stylesheet" href="/CSS/testimonials.css">
-    <link rel="stylesheet" href="/CSS/animations.css">
-    <link rel="stylesheet" href="/CSS/responsive.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <script src="./JS/testimonials.js"></script>
+    <link rel="stylesheet" href="testimonials.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- NAVIGATION -->
     <header class="navbar">
         <a href="index.html" class="logo">
             NJGZLM<span>.</span> Studios
@@ -28,153 +24,157 @@
         <nav>
             <a href="index.html">Home</a>
             <a href="index.html#services">Services</a>
+            <a href="index.html#about">About</a>
             <a href="testimonials.html" class="active">Testimonials</a>
-            <a href="index.html#contact">Contact</a>
+            <a href="index.html#contact" class="nav-button">Contact Us</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="testimonial-hero">
+    <main>
 
-        <div class="hero-content">
-            <span class="section-tag">
-                <i class="fas fa-comments"></i>
-                CLIENT EXPERIENCES
-            </span>
+        <!-- HERO SECTION -->
+        <section class="testimonial-hero">
 
-            <h1>
-                Voices of Our
-                <span>Clients.</span>
-            </h1>
+            <div class="hero-content">
+                <span class="section-label">
+                    CLIENT EXPERIENCES
+                </span>
 
-            <p>
-                Every project tells a story. Discover the experiences
-                and feedback of people who trust NJGZLM. Studios
-                to bring their digital ideas to life.
-            </p>
+                <h1>
+                    Trusted by Clients.<br>
+                    <span>Inspired by Results.</span>
+                </h1>
 
-            <a href="#reviews" class="primary-btn">
-                Explore Testimonials
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-
-        <div class="hero-decoration">
-            <i class="fas fa-quote-right"></i>
-        </div>
-
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section" id="reviews">
-
-        <div class="section-heading">
-            <span>WHAT PEOPLE SAY</span>
-            <h2>Experiences That Matter</h2>
-            <p>
-                We believe that every successful project begins
-                with trust and ends with satisfaction.
-            </p>
-        </div>
-
-        <div class="testimonial-grid" id="testimonialGrid">
-
-            <!-- Testimonials will be displayed here -->
-
-            <div class="empty-reviews">
-                <i class="fas fa-star"></i>
-                <h3>Your Feedback Matters!</h3>
                 <p>
-                    We're excited to feature our first client
-                    experiences here soon.
+                    Discover what people say about working with
+                    NJGZLM. Studios. We believe every successful
+                    project begins with trust, creativity, and innovation.
+                </p>
+
+                <a href="#reviews" class="primary-button">
+                    Explore Reviews <span>→</span>
+                </a>
+            </div>
+
+            <div class="hero-decoration">
+                <div class="glow-circle"></div>
+                <div class="floating-card">
+                    <div class="quote-icon">“</div>
+                    <h3>Great Work.</h3>
+                    <p>Building ideas into meaningful digital experiences.</p>
+                    <div class="mini-stars">★★★★★</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section class="reviews-section" id="reviews">
+
+            <div class="section-heading">
+                <span class="section-label">WHAT PEOPLE SAY</span>
+
+                <h2>Experiences That <span>Speak for Themselves.</span></h2>
+
+                <p>
+                    Every project is an opportunity to create something
+                    exceptional. Here's what our clients have to say.
                 </p>
             </div>
 
-        </div>
+            <div class="reviews-grid">
 
-    </section>
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
 
+                    <p class="review-text">
+                        "NJGZLM. Studios brought our ideas to life.
+                        The creativity, attention to detail, and
+                        professionalism made the experience excellent."
+                    </p>
 
-<!-- Feedback Section -->
-<section class="feedback-section" id="feedback">
+                    <div class="reviewer">
+                        <div class="avatar">C</div>
+                        <div>
+                            <h3>Client Name</h3>
+                            <span>Website Development</span>
+                        </div>
+                    </div>
+                </article>
 
-    <div class="feedback-content">
+                <article class="review-card featured">
+                    <div class="stars">★★★★★</div>
 
-        <span>SHARE YOUR EXPERIENCE</span>
+                    <p class="review-text">
+                        "The team delivered a modern and professional
+                        experience. Their dedication to quality and
+                        innovative solutions really stood out."
+                    </p>
 
-        <h2>Have We Worked Together?</h2>
+                    <div class="reviewer">
+                        <div class="avatar">J</div>
+                        <div>
+                            <h3>Client Name</h3>
+                            <span>Digital Solutions</span>
+                        </div>
+                    </div>
+                </article>
 
-        <p>
-            We'd love to hear about your experience.
-            Your feedback helps us improve and serve
-            our clients better.
-        </p>
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
 
-        <form id="testimonialForm" class="testimonial-form">
+                    <p class="review-text">
+                        "A great experience from start to finish.
+                        The final result reflected our vision and
+                        exceeded our expectations."
+                    </p>
 
-            <input
-                type="text"
-                id="testimonialName"
-                placeholder="Your Full Name"
-                maxlength="60"
-                required
-            >
-
-            <input
-                type="text"
-                id="testimonialProject"
-                placeholder="Project or Service (Optional)"
-                maxlength="100"
-            >
-
-            <label>How would you rate our service?</label>
-
-            <div class="rating-container">
-
-                <span class="rating-star" data-rating="1">★</span>
-                <span class="rating-star" data-rating="2">★</span>
-                <span class="rating-star" data-rating="3">★</span>
-                <span class="rating-star" data-rating="4">★</span>
-                <span class="rating-star" data-rating="5">★</span>
+                    <div class="reviewer">
+                        <div class="avatar">M</div>
+                        <div>
+                            <h3>Client Name</h3>
+                            <span>Creative Project</span>
+                        </div>
+                    </div>
+                </article>
 
             </div>
 
-            <input
-                type="hidden"
-                id="testimonialRating"
-                value=""
-            >
+            <p class="review-note">
+                Sample testimonials — replace these with genuine
+                client feedback before publishing.
+            </p>
 
-            <textarea
-                id="testimonialMessage"
-                placeholder="Share your experience with NJGZLM. Studios..."
-                maxlength="1000"
-                required
-            ></textarea>
+        </section>
 
-            <button type="submit" class="primary-btn">
-                Submit Testimonial
-                <i class="fas fa-paper-plane"></i>
-            </button>
+        <!-- CALL TO ACTION -->
+        <section class="testimonial-cta">
 
-        </form>
+            <span class="section-label">LET'S CREATE SOMETHING</span>
 
-    </div>
+            <h2>Your Vision.<br><span>Our Innovation.</span></h2>
 
-</section>
+            <p>
+                Have a project in mind? Let's work together
+                to turn your ideas into reality.
+            </p>
 
+            <a href="index.html#contact" class="primary-button">
+                Start a Project <span>→</span>
+            </a>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            © 2026 NJGZLM. Studios.
-            All Rights Reserved.
-        </p>
-        <p>Innovating Ideas. Building Digital Futures.</p>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="index.html" class="logo">
+            NJGZLM<span>.</span> Studios
+        </a>
+
+        <p>© 2026 NJGZLM. Studios. All Rights Reserved.</p>
     </footer>
-
-    <script src="js/testimonials.js"></script>
 
 </body>
 </html>
-
