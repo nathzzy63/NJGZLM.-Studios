@@ -123,14 +123,13 @@ Deno.serve(async (req: Request) => {
     const message = String(body.message ?? "").trim();
 
     // Allowed services
-    const allowedServices = [
-      "Website Development",
-      "App Development",
-      "Robotics",
-      "Custom Solutions",
-      "Other",
-    ];
-
+const allowedServices = [
+  "Website Development",
+  "App Development",
+  "Robotics Solutions",
+  "Technology Support",
+  "Other",
+];
     // Validate input
     const validEmail =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
