@@ -7,7 +7,7 @@ const SUPABASE_FUNCTION_URL =
     "https://vtilcllmgskvnbkcatmn.supabase.co/functions/v1/submit-inquiry";
 
 // Use your Supabase publishable or legacy anon key.
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+const SUPABASE_ANON_KEY = "sb_secret_V6EaBJzCKbcS_LPH_W21bA_iBUzvi7D";
 
 document.addEventListener("DOMContentLoaded", () => {
 
