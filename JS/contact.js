@@ -6,74 +6,87 @@
 const SUPABASE_FUNCTION_URL =
     "https://vtilcllmgskvnbkcatmn.supabase.co/functions/v1/submit-inquiry";
 
-// Use your Supabase publishable (or legacy anon) key.
-// NEVER use your service-role or secret key here.
+// Use your Supabase publishable or legacy anon key.
 const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
-const contactForm = document.getElementById("contactForm");
-const formMessage = document.getElementById("formMessage");
-const submitButton = document.getElementById("submitButton");
+document.addEventListener("DOMContentLoaded", () => {
 
-// ==========================================
-// FORM SUBMISSION
-// ==========================================
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+    const submitButton = document.getElementById("submitButton");
 
-if (contactForm) {
+    // Check required form elements
+    if (!contactForm) {
+        console.error("Contact form not found!");
+        return;
+    }
+
+    if (!formMessage || !submitButton) {
+        console.error("Form message or submit button is missing!");
+        return;
+    }
+
+    // Safely retrieve form values
+    function getValue(id, required = true) {
+        const element = document.getElementById(id);
+
+        if (!element) {
+            if (required) {
+                throw new Error(
+                    `Missing HTML element: #${id}. Check contact.html.`
+                );
+            }
+
+            return "";
+        }
+
+        return element.value.trim();
+    }
+
+    // ==========================================
+    // FORM SUBMISSION
+    // ==========================================
 
     contactForm.addEventListener("submit", async (event) => {
 
         event.preventDefault();
 
-        if (!contactForm.reportValidity()) {
-            return;
-        }
-
-        const full_name =
-            document.getElementById("name").value.trim();
-
-        const email =
-            document.getElementById("email").value.trim();
-
-        const service =
-            document.getElementById("service").value;
-
-        const budget =
-            document.getElementById("budget").value;
-
-        const message =
-            document.getElementById("description").value.trim();
-
-        const website =
-            document.getElementById("website").value;
-
-        const inquiryData = {
-            full_name,
-            email,
-            service,
-            budget,
-            message,
-            website
-        };
-
-        // Loading state
-        submitButton.disabled = true;
-        submitButton.textContent = "Submitting...";
-
-        formMessage.textContent = "Sending your inquiry...";
+        if (!contactForm.reportValidity()) return;
 
         try {
+
+            const full_name = getValue("name");
+            const email = getValue("email");
+            const service = getValue("service");
+            const budget = getValue("budget");
+            const message = getValue("description");
+            const website = getValue("website", false);
+
+            const inquiryData = {
+                full_name,
+                email,
+                service,
+                budget,
+                message,
+                website
+            };
+
+            // Loading state
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+
+            formMessage.textContent = "Sending your inquiry...";
+            formMessage.style.color = "#9AFF70";
 
             const response = await fetch(
                 SUPABASE_FUNCTION_URL,
                 {
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json",
                         "apikey": SUPABASE_ANON_KEY,
                         "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
                     },
-
                     body: JSON.stringify(inquiryData)
                 }
             );
@@ -86,10 +99,11 @@ if (contactForm) {
                 );
             }
 
-            // Successful submission
-            formMessage.textContent = result.message;
+            // Success
+            formMessage.textContent =
+                result.message || "Your inquiry was submitted successfully!";
 
-            formMessage.style.color = "green";
+            formMessage.style.color = "#9AFF70";
 
             contactForm.reset();
 
@@ -99,10 +113,8 @@ if (contactForm) {
 
             console.error("Contact form error:", error);
 
-            formMessage.textContent =
-                error.message || "Something went wrong. Please try again.";
-
-            formMessage.style.color = "red";
+            formMessage.textContent = error.message;
+            formMessage.style.color = "#ff6b6b";
 
         } finally {
 
@@ -113,14 +125,14 @@ if (contactForm) {
 
     });
 
-}
+    // ==========================================
+    // AUTOMATIC FOOTER YEAR
+    // ==========================================
 
-// ==========================================
-// AUTOMATIC FOOTER YEAR
-// ==========================================
+    const yearElement = document.getElementById("currentYear");
 
-const yearElement = document.getElementById("currentYear");
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
 
-if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-}
+});
