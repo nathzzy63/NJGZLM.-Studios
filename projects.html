@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,297 +13,429 @@
 
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/projects.css">
-     <link rel="stylesheet" href="/CSS/animations.css">
-     <link rel="stylesheet" href="/CSS/responsive.css">
+    <link rel="stylesheet" href="/CSS/animations.css">
+    <link rel="stylesheet" href="/CSS/responsive.css">
 
     <script src="/JS/projects.js" defer></script>
-    <script src ="/JS/navigation.js" defer></script>
+    <script src="/JS/navigation.js" defer></script>
 </head>
 
 <body>
 
+    <!-- NAVIGATION -->
+    <header class="navbar">
 
-<header class="navbar">
-
-    <a href="index.html" class="logo">
-        CaraTech<span></span> Studios
-    </a>
-
-    <nav id="navMenu">
-
-        <a href="index.html">Home</a>
-
-        <a href="services.html">Services</a>
-
-        <a href="projects.html">Projects</a>
-
-        <a href="about.html">About</a>
-
-        <a href ="testimonials.html">Testimonials</a>
-
-        <a href="contact.html" class="nav-button">
-            Get Started
+        <a href="index.html" class="logo">
+            CaraTech<span></span> Studios
         </a>
 
-    </nav>
+        <nav id="navMenu">
 
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open navigation"
-        aria-expanded="false"
-        aria-controls="navMenu"
-        type="button">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="testimonials.html">Testimonials</a>
 
-        ☰
+            <a href="contact.html" class="nav-button">
+                Get Started
+            </a>
 
-    </button>
+        </nav>
 
-</header>
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="navMenu"
+            type="button">
+
+            ☰
+
+        </button>
+
+    </header>
 
 
-<main>
+    <main>
 
-    <section class="projects-hero">
-        <p class="eyebrow">OUR WORK & INNOVATIONS</p>
+        <!-- PROJECT HERO -->
+        <section class="projects-hero">
 
-        <h1>
-            Ideas turned into<br>
-            <span>technology.</span>
-        </h1>
+            <p class="eyebrow">OUR WORK & INNOVATIONS</p>
 
-        <p>
-            Explore our digital creations, robotics prototypes,
-            and innovative technology projects.
-        </p>
-    </section>
+            <h1>
+                Ideas turned into<br>
+                <span>technology.</span>
+            </h1>
 
-    <section class="portfolio-section">
+            <p>
+                Explore our digital creations, robotics prototypes,
+                and innovative technology projects.
+            </p>
 
-        <div class="portfolio-heading">
+        </section>
+
+
+        <!-- PROJECT PORTFOLIO -->
+        <section class="portfolio-section">
+
+            <div class="portfolio-heading">
+
+                <div>
+                    <p class="eyebrow">PROJECT PORTFOLIO</p>
+                    <h2>Explore Our Projects</h2>
+                </div>
+
+                <p class="portfolio-description">
+                    Discover what we're building.
+                </p>
+
+            </div>
+
+
+            <!-- PROJECT FILTERS -->
+            <div class="project-filters">
+
+                <button class="filter-btn active"
+                    data-filter="all"
+                    type="button">
+                    All Projects
+                </button>
+
+                <button class="filter-btn"
+                    data-filter="web"
+                    type="button">
+                    Websites
+                </button>
+
+                <button class="filter-btn"
+                    data-filter="app"
+                    type="button">
+                    Applications
+                </button>
+
+                <button class="filter-btn"
+                    data-filter="robotics"
+                    type="button">
+                    Robotics
+                </button>
+
+                <button class="filter-btn"
+                    data-filter="game"
+                    type="button">
+                    Games
+                </button>
+
+            </div>
+
+
+            <!-- PROJECT GRID -->
+            <div class="project-grid">
+
+
+                <!-- PROJECT 1: DUSTY -->
+                <article class="project-card"
+                    data-category="robotics">
+
+                    <div class="project-image robot-project">
+
+                        <span class="project-emoji">🤖</span>
+
+                        <span class="project-label">
+                            ROBOTICS
+                        </span>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <p class="project-type">
+                            ROBOTICS / IoT
+                        </p>
+
+                        <h3>DUSTY</h3>
+
+                        <p>
+                            A mobile waste segregation robot concept
+                            designed to support cleaner communities.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>ESP32</span>
+                            <span>Robotics</span>
+                            <span>Automation</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 2: FASTLEARNER -->
+                <article class="project-card"
+                    data-category="app">
+
+                    <div class="project-image app-project">
+
+                        <img
+                            src="images/projects/fastlearner.png"
+                            alt="FastLearner 2 reading and learning platform"
+                            class="project-thumbnail"
+                            loading="lazy"
+                        >
+
+                        <span class="project-label">
+                            EDTECH
+                        </span>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <p class="project-type">
+                            APPLICATION / EDUCATION
+                        </p>
+
+                        <h3>FastLearner</h3>
+
+                        <p>
+                            A reading-comprehension platform featuring
+                            books, quizzes, classrooms, assignments,
+                            and an AI reading buddy.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>Education</span>
+                            <span>AI</span>
+                            <span>Web App</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 3: CLASSBREAK -->
+                <article class="project-card"
+                    data-category="game">
+
+                    <div class="project-image game-project">
+
+                        <img
+                            src="images/projects/classbreak.png"
+                            alt="CLASSBREAK Roblox school game environment"
+                            class="project-thumbnail"
+                            loading="lazy"
+                        >
+
+                        <span class="project-label">
+                            GAME DEVELOPMENT
+                        </span>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <p class="project-type">
+                            GAME / ROBLOX
+                        </p>
+
+                        <h3>CLASSBREAK</h3>
+
+                        <p>
+                            A student real-life game project on Roblox,
+                            featuring custom interfaces and gameplay systems.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>Roblox Studio</span>
+                            <span>Lua</span>
+                            <span>Game UI</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 4: SUROY-SUROY -->
+                <article class="project-card"
+                    data-category="web">
+
+                    <div class="project-image web-project">
+
+                        <span class="project-emoji">💻</span>
+
+                        <span class="project-label">
+                            WEB DEVELOPMENT
+                        </span>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <p class="project-type">
+                            WEBSITE / BUSINESS
+                        </p>
+
+                        <h3>Suroy-Suroy</h3>
+
+                        <p>
+                            Our ride-share website concept, designed
+                            to help commuters discover affordable
+                            transportation options.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+        <section class="contact section">
+
+            <div class="contact-box">
+
+                <p class="eyebrow">
+                    YOUR IDEA COULD BE NEXT
+                </p>
+
+                <h2>Let's build your project.</h2>
+
+                <p>
+                    Have an idea for an app, website,
+                    or robotics solution?
+                </p>
+
+                <a href="contact.html" class="button primary">
+                    Start a Project →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+
+            <!-- BRAND -->
+            <div class="footer-brand">
+
+                <a href="index.html" class="logo">
+                    CaraTech<span> Studios</span>
+                </a>
+
+                <p>
+                    Building innovative digital experiences
+                    through websites, applications, and robotics.
+                    Technology made accessible to everyone.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
             <div>
-                <p class="eyebrow">PROJECT PORTFOLIO</p>
-                <h2>Explore Our Projects</h2>
+
+                <h3>Quick Links</h3>
+
+                <div class="footer-links">
+
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+
+                </div>
+
             </div>
 
-            <p class="portfolio-description">
-                Discover what we're building.
-            </p>
-        </div>
 
-        <div class="project-filters">
-            <button class="filter-btn active"
-                data-filter="all">All Projects</button>
+            <!-- SERVICES -->
+            <div>
 
-            <button class="filter-btn"
-                data-filter="web">Websites</button>
+                <h3>Our Services</h3>
 
-            <button class="filter-btn"
-                data-filter="app">Applications</button>
+                <div class="footer-links">
 
-            <button class="filter-btn"
-                data-filter="robotics">Robotics</button>
+                    <a href="services.html">Website Development</a>
+                    <a href="services.html">App Development</a>
+                    <a href="services.html">Robotics</a>
+                    <a href="services.html">Custom Solutions</a>
 
-            <button class="filter-btn"
-                data-filter="game">Games</button>
-        </div>
-
-        <div class="project-grid">
-
-            <!-- Project 1 -->
-            <article class="project-card" data-category="robotics">
-
-                <div class="project-image robot-project">
-                    <span class="project-emoji">🤖</span>
-                    <span class="project-label">ROBOTICS</span>
                 </div>
 
-                <div class="project-info">
-                    <p class="project-type">ROBOTICS / IoT</p>
+            </div>
 
-                    <h3>DUSTY</h3>
 
-                    <p>
-                        A mobile waste segregation robot concept
-                        designed to support cleaner communities.
-                    </p>
+            <!-- SOCIALS -->
+            <div>
 
-                    <div class="project-tags">
-                        <span>ESP32</span>
-                        <span>Robotics</span>
-                        <span>Automation</span>
-                    </div>
+                <h3>Connect With Us</h3>
+
+                <div class="footer-socials">
+
+                    <a href="#"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Facebook
+                    </a>
+
+                    <a href="#"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Instagram
+                    </a>
+
+                    <a href="#"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        GitHub
+                    </a>
+
                 </div>
 
-            </article>
+            </div>
 
-            <!-- Project 2 -->
-            <article class="project-card" data-category="app">
-
-                <div class="project-image app-project">
-                    <span class="project-emoji">📚</span>
-                    <span class="project-label">EDTECH</span>
-                </div>
-
-                <div class="project-info">
-                    <p class="project-type">APPLICATION / EDUCATION</p>
-
-                    <h3>FastLearner</h3>
-
-                    <p>
-                        A reading-comprehension platform concept
-                        featuring books, quizzes, and an AI reading coach.
-                    </p>
-
-                    <div class="project-tags">
-                        <span>Education</span>
-                        <span>AI</span>
-                        <span>Web App</span>
-                    </div>
-                </div>
-
-            </article>
-
-            <!-- Project 3 -->
-            <article class="project-card" data-category="game">
-
-                <div class="project-image game-project">
-                    <span class="project-emoji">🎮</span>
-                    <span class="project-label">GAME DEVELOPMENT</span>
-                </div>
-
-                <div class="project-info">
-                    <p class="project-type">GAME / ROBLOX</p>
-
-                    <h3>CLASSBREAK</h3>
-
-                    <p>
-                        A student real-life game project on roblox featuring
-                        custom interfaces and gameplay systems.
-                    </p>
-
-                    <div class="project-tags">
-                        <span>Roblox Studio</span>
-                        <span>Lua</span>
-                        <span>Game UI</span>
-                    </div>
-                </div>
-
-            </article>
-
-            <!-- Project 4 -->
-            <article class="project-card" data-category="web">
-
-                <div class="project-image web-project">
-                    <span class="project-emoji">💻</span>
-                    <span class="project-label">WEB DEVELOPMENT</span>
-                </div>
-
-                <div class="project-info">
-                    <p class="project-type">WEBSITE / BUSINESS</p>
-
-                    <h3>Suroy-Suroy</h3>
-
-                    <p>
-                        Our own ride-share website that is
-                        soon to be published this year for all commuters with cheap 
-                        ride cost.
-                    </p>
-
-                    <div class="project-tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-                </div>
-
-            </article>
 
         </div>
 
-    </section>
 
-    <section class="contact section">
-        <div class="contact-box">
-            <p class="eyebrow">YOUR IDEA COULD BE NEXT</p>
-
-            <h2>Let's build your project.</h2>
+        <!-- COPYRIGHT -->
+        <div class="footer-bottom">
 
             <p>
-                Have an idea for an app, website,
-                or robotics solution?
+                © <span id="currentYear"></span>
+                CaraTech Studios. All rights reserved.
             </p>
-
-            <a href="contact.html" class="button primary">
-                Start a Project →
-            </a>
-        </div>
-    </section>
-
-</main>
-
-<footer class="site-footer">
-    <div class="footer-container">
-
-        <!-- BRAND -->
-        <div class="footer-brand">
-            <a href="index.html" class="logo">
-                CaraTech<span> Studios</span>
-            </a>
 
             <p>
-                Building innovative digital experiences
-                through websites, applications, and robotics.
-                Technology made accessible to everyone.
+                Designed with innovation.
             </p>
+
         </div>
 
-        <!-- QUICK LINKS -->
-        <div>
-            <h3>Quick Links</h3>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
-                <a href="projects.html">Projects</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-
-        <!-- SERVICES -->
-        <div>
-            <h3>Our Services</h3>
-            <div class="footer-links">
-                <a href="services.html">Website Development</a>
-                <a href="services.html">App Development</a>
-                <a href="services.html">Robotics</a>
-                <a href="services.html">Custom Solutions</a>
-            </div>
-        </div>
-
-        <!-- SOCIALS -->
-        <div>
-            <h3>Connect With Us</h3>
-            <div class="footer-socials">
-                <!-- Replace # with your real profile URLs -->
-                <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
-                <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- COPYRIGHT -->
-    <div class="footer-bottom">
-        <p>
-            © <span id="currentYear"></span>
-            CaraTech Studios. All rights reserved.
-        </p>
-
-        <p>Designed with innovation.</p>
-    </div>
-</footer>
+    </footer>
 
 </body>
 </html>
