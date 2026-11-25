@@ -1,20 +1,24 @@
 
 /* =====================================
    TESTIMONIALS PAGE
-   NJGZLM. STUDIOS
+   CHROMIUM STUDIOS
 ===================================== */
 
 /* HERO SECTION */
 
+.testimonial-hero,
 .testimonials-hero {
     padding: 100px 8% 70px;
-    text-align: center;
     background:
         radial-gradient(
             ellipse at center,
             rgba(118, 255, 77, 0.08),
             transparent 65%
         );
+}
+
+.testimonials-hero {
+    text-align: center;
 }
 
 .testimonials-hero h1 {
@@ -33,7 +37,158 @@
     color: var(--muted);
 }
 
-/* TESTIMONIAL CARDS */
+/* =====================================
+   FLOATING HERO STAR
+===================================== */
+
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tech-circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 2px solid rgba(118, 255, 77, 0.35);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(118, 255, 77, 0.12),
+            rgba(8, 11, 10, 0.2) 70%
+        );
+
+    box-shadow:
+        0 0 20px rgba(118, 255, 77, 0.12),
+        inset 0 0 25px rgba(118, 255, 77, 0.08);
+
+    animation: circleGlow 4s ease-in-out infinite;
+}
+
+/* Decorative rotating circle */
+
+.tech-circle::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(118, 255, 77, 0.35);
+    animation: rotateCircle 15s linear infinite;
+}
+
+.tech-circle::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 15px;
+    right: 45px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 15px var(--green);
+}
+
+/* Circle Content */
+
+.circle-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
+}
+
+/* THE FLOATING STAR */
+
+.robot-icon {
+    display: inline-block;
+    font-size: 5rem;
+    line-height: 1;
+
+    filter:
+        drop-shadow(0 0 8px rgba(118, 255, 77, 0.9))
+        drop-shadow(0 0 18px rgba(118, 255, 77, 0.7))
+        drop-shadow(0 0 30px rgba(118, 255, 77, 0.4));
+
+    animation:
+        floatingStar 3s ease-in-out infinite,
+        starGlow 2s ease-in-out infinite alternate;
+}
+
+.circle-inner p {
+    color: var(--green);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/* Star Floating Animation */
+
+@keyframes floatingStar {
+    0%, 100% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(8deg);
+    }
+}
+
+/* Star Glow Animation */
+
+@keyframes starGlow {
+    from {
+        filter:
+            drop-shadow(0 0 6px rgba(118, 255, 77, 0.6))
+            drop-shadow(0 0 12px rgba(118, 255, 77, 0.4));
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 12px rgba(118, 255, 77, 1))
+            drop-shadow(0 0 25px rgba(118, 255, 77, 0.8));
+    }
+}
+
+/* Circle Glow Animation */
+
+@keyframes circleGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(118, 255, 77, 0.12),
+            inset 0 0 25px rgba(118, 255, 77, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(118, 255, 77, 0.25),
+            inset 0 0 35px rgba(118, 255, 77, 0.15);
+    }
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =====================================
+   TESTIMONIAL CARDS
+===================================== */
 
 .testimonial-grid {
     padding: 30px 8% 100px;
@@ -53,13 +208,17 @@
 .testimonial-card:hover {
     border-color: var(--green);
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(118, 255, 77, 0.08);
 }
+
+/* GOLD REVIEW STARS */
 
 .testimonial-stars {
     color: #f5c451;
     font-size: 1.2rem;
     letter-spacing: 4px;
     margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(245, 196, 81, 0.25);
 }
 
 .testimonial-quote {
@@ -100,7 +259,9 @@
     font-size: 0.85rem;
 }
 
-/* TESTIMONIAL DISCLAIMER */
+/* =====================================
+   TESTIMONIAL DISCLAIMER
+===================================== */
 
 .testimonial-disclaimer {
     text-align: center;
@@ -109,7 +270,9 @@
     padding: 0 8% 60px;
 }
 
-/* CALL TO ACTION */
+/* =====================================
+   CALL TO ACTION
+===================================== */
 
 .testimonials-cta {
     padding: 80px 8%;
@@ -134,7 +297,9 @@
     line-height: 1.8;
 }
 
-/* RESPONSIVE DESIGN */
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
 
 @media (max-width: 900px) {
 
@@ -146,8 +311,22 @@
 
 @media (max-width: 750px) {
 
+    .testimonial-hero,
     .testimonials-hero {
         padding: 75px 5% 50px;
+    }
+
+    .hero-visual {
+        margin-top: 40px;
+    }
+
+    .tech-circle {
+        width: 230px;
+        height: 230px;
+    }
+
+    .robot-icon {
+        font-size: 4rem;
     }
 
     .testimonial-grid {
@@ -163,4 +342,14 @@
         padding: 65px 5%;
     }
 
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .robot-icon,
+    .tech-circle,
+    .tech-circle::before {
+        animation: none;
+    }
 }
